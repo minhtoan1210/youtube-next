@@ -10,6 +10,12 @@ const nextConfig = {
           pathname: '/photos/**'
         }
       ]
+    },
+    // dùng để bắn log ra tenniar
+    logging: {
+      fetches: {
+        fullUrl: true
+      }
     }
   }
 

@@ -1,29 +1,32 @@
-"use client"
+"use client";
 
-import { ThemeProvider } from 'next-themes'
-import { Inter } from 'next/font/google'
-import Link from 'next/link'
+import { ThemeProvider } from "next-themes";
+import { Inter } from "next/font/google";
+import Link from "next/link";
 
-
-const inter = Inter({ subsets: ['vietnamese'] })
+const inter = Inter({ subsets: ["vietnamese"] });
 export default function AuthLayout({
-  children
+  children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
-  //   <html lang='en' suppressHydrationWarning>
-  //   <body className={`${inter.className}`}>
-  //     <ThemeProvider
-  //       attribute='class'
-  //       defaultTheme='system'
-  //       enableSystem
-  //       disableTransitionOnChange
-  //     >
-  //       {children}
-  //     </ThemeProvider>
-  //   </body>
-  // </html>
-   children
-  )
+    <>
+      {/* <div>Toan</div> */}
+      {children}
+    </>
+  );
 }
+
+//   <html lang='en' suppressHydrationWarning>
+//   <body className={`${inter.className}`}>
+//     <ThemeProvider
+//       attribute='class'
+//       defaultTheme='system'
+//       enableSystem
+//       disableTransitionOnChange
+//     >
+//       {children}
+//     </ThemeProvider>
+//   </body>
+// </html>

@@ -43,6 +43,8 @@ export const LoginBody = z
 
 export type LoginBodyType = z.TypeOf<typeof LoginBody>
 
+
+
 export const LoginRes = RegisterRes
 
 export type LoginResType = z.TypeOf<typeof LoginRes>

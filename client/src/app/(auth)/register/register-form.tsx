@@ -17,6 +17,7 @@ import {
   RegisterBodyType,
 } from "@/schemaValidations/auth.schema";
 import envConfig from "@/config";
+import { error } from "console";
 
 const RegisterForm = () => {
   const form = useForm<RegisterBodyType>({
@@ -43,10 +44,13 @@ const RegisterForm = () => {
     ).then((res) => res.json());
     console.log(result);
   }
+  
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(onSubmit)}
+        onSubmit={form.handleSubmit(onSubmit, (error) => {
+          console.log("error", error);
+        })}
         className="space-y-2 max-w-[600px] flex-shrink-0 w-full"
         noValidate
       >

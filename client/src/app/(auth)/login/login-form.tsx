@@ -16,9 +16,11 @@ import { LoginBody, LoginBodyType } from "@/schemaValidations/auth.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useAppContext } from '@/app/AppProvider'
 
 export default function LoginForm() {
   const { toast } = useToast();
+  const { setSessionToken } = useAppContext()
 
   const form = useForm<LoginBodyType>({
     resolver: zodResolver(LoginBody),
@@ -53,6 +55,26 @@ export default function LoginForm() {
       toast({
         description: result.payload.message,
       });
+
+      const resultFromNextServer = await fetch('/api/auth', {
+        method: 'POST',
+        body: JSON.stringify(result),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(async (res) => {
+        const payload = await res.json()
+        const data = {
+          status: res.status,
+          payload
+        }
+        if (!res.ok) {
+          throw data
+        }
+        return data
+      })
+      setSessionToken(resultFromNextServer.payload.data.token)
+      
     } catch (error: any) {
       const errors = error.payload.errors as {
         field: string;
